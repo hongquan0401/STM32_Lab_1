@@ -111,7 +111,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  int counter1 = 10, counter2 = 10, t = 10;
+  int counter1 = 10, t = 10;
   int red_time = 5, yellow_time = 2, green_time = 3;
   /* USER CODE END Init */
 
@@ -134,15 +134,13 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  if (counter1 == 0) counter1 = 10;
-	  if (counter2 == 0) counter2 = 10;
 	  if (counter1 > t - red_time) LED1('R');
 	  	else if(counter1 > t - red_time - green_time) LED1('G');
 	  		else LED1('Y');
-	  if (counter2 > t - green_time) LED2('G');
-	  	else if(counter2 > t - green_time - yellow_time) LED2('Y');
+	  if (counter1 > t - green_time) LED2('G');
+	  	else if(counter1 > t - green_time - yellow_time) LED2('Y');
 	  		else LED2('R');
 	  	counter1 = counter1 - 1;
-	  	counter2 = counter2 - 1;
 	  	HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
