@@ -107,12 +107,12 @@ int counter_light = total;
 	  	  	else if(counter_light > total - red_time - green_time)
 	  	  		{
 	  	  			LED1('G');
-	  	  			display_LED7seg(counter_light - green_time - 1);
+	  	  			display_LED7seg(counter_light - green_time);
 	  	  		}
 	  	  		else
 	  	  			{
 	  	  				LED1('Y');
-	  	  				display_LED7seg(counter_light - yellow_time - 1);
+	  	  				display_LED7seg(counter_light - yellow_time + 1);
 	  	  			}
 	  	  if (counter_light > total - green_time) LED2('G');
 	  	  	else if(counter_light > total - green_time - yellow_time) LED2('Y');
@@ -329,7 +329,7 @@ void LED1 (char color)
 {
 	if (color == 'R')
 		{
-			HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, SET);
+			HAL_GPIO_WritePin(LED_RED1_GPIO_Port, LED_RED1_Pin, RESET);
 			HAL_GPIO_WritePin(LED_YELLOW1_GPIO_Port, LED_YELLOW1_Pin, SET);
 			HAL_GPIO_WritePin(LED_GREEN1_GPIO_Port, LED_GREEN1_Pin, SET);
 		} else if (color == 'Y')
