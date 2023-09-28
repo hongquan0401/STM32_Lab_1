@@ -67,7 +67,7 @@ void clearNumberOnClock (int num);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	int counter = 0;
+	int sec = 0, min = 0, hour = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -94,14 +94,31 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  clearAllClock();
+
   while (1)
   {
     /* USER CODE END WHILE */
-	  if (counter > 11) counter = 0;
-	  setNumberOnClock(counter++);
-	  HAL_Delay(1000);
+	  clearAllClock();
+	  if (sec == 60)
+	  {
+		  	  sec = 0;
+		  	  min = min + 1;
+	  }
+	  if (min == 60)
+	  {
+		  	  min = 0;
+		  	  hour = hour + 1;
+	  }
+	  if (hour == 12)
+	  {
+		  	  hour = 0;
+	  }
+	  setNumberOnClock(hour);
+	  setNumberOnClock(min/5);
+	  setNumberOnClock(sec/5);
+	  sec = sec + 1;
     /* USER CODE BEGIN 3 */
+	  HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
@@ -190,7 +207,7 @@ void clearAllClock(void)
 }
 void display_time(int num)
 {
-	clearAllClock();
+	// clearAllClock();
 	switch (num)
 	{
 		case 0:
@@ -260,7 +277,7 @@ void display_time(int num)
 }
 void setNumberOnClock (int num)
 {
-	clearAllClock();
+	// clearAllClock();
 	display_time(num);
 }
 void clearNumberOnClock (int num)
